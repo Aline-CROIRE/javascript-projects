@@ -18,32 +18,39 @@ var questions=[
 
 //Function to display a random quiz question and answer
 let currentquestion='';
-let currentanswer=''
+let currentanswer='';
+let remainigquestion=[...questions];
 const randomquestion=()=>{
     randomIndex=Math.floor(Math.random()*questions.length);
     currentquestion=questions[randomIndex].question;
-    currentanswer=questions[randomIndex].correctanswer
+    currentanswer=questions[randomIndex].correctanswer;
+    remainigquestion.splice(randomIndex, 1);
 }
 randomquestion();
-console.log(currentquestion);
+//Displaying the Question
+console.log(`The question is: ${currentquestion}`);
+console.log(`choose the right answer in the following ${questions[randomIndex].answers}`);
 //function for scoring
 let score=0;
 const scoredmarks=(answer)=>{
+    console.log(`You answered: "${answer}"`)
     if(answer===currentanswer){
-        console.log('correct!');
+        console.log('correct! You did it!!' );
         score+=2;
-        
+       
     }
     else{
-        console.log('incorrect!')
+        console.log(`Incorrect! the correct answer is: " ${currentanswer}"`);
         score=score;
     }
+    console.log(`you scored: ${score} marks`);
+    randomquestion();
 }
-scoredmarks();
-console.log(`you scored: ${score} marks`);
+scoredmarks('Peter');
 
 
 
     
+
 
 
